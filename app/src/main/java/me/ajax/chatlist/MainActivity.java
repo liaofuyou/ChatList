@@ -9,6 +9,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
     MessageAdapter messageAdapter;
 
     ArrayList<ChatMessage> messages = new ArrayList<>();
@@ -24,9 +25,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(messageAdapter = new MessageAdapter());
 
-        /*
-         * 既然是动画，就会有时间，我们把动画执行时间变大一点来看一看效果
-         */
         ChatItemAnimator chatItemAnimator = new ChatItemAnimator();
         chatItemAnimator.setAddDuration(1000);
         chatItemAnimator.setRemoveDuration(1000);
