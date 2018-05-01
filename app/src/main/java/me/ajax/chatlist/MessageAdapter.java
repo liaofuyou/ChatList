@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -13,10 +14,10 @@ import java.util.ArrayList;
  */
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
 
-    private ArrayList<String> myData = new ArrayList<>();
+    private ArrayList<ChatMessage> messages = new ArrayList<>();
 
     MessageAdapter() {
-        myData.add("我们已经是好友了");
+        messages.add(new ChatMessage(true, "我们已经是好友了"));
     }
 
     @Override
@@ -27,30 +28,38 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     @Override
     public void onBindViewHolder(MessageViewHolder holder, int position) {
-        holder.setMessageText(myData.get(position));
+        holder.setMessage(messages.get(position), position);
     }
 
-    public void add(String str) {
-        myData.add(str);
-        notifyItemInserted(myData.size() - 1);//注意这里
+    public void add(ChatMessage message) {
+        messages.add(message);
+        notifyItemInserted(messages.size() - 1);//注意这里
     }
 
     @Override
     public int getItemCount() {
-        return myData.size();
+        return messages.size();
     }
 
 
-    static class MessageViewHolder extends RecyclerView.ViewHolder {
+    class MessageViewHolder extends RecyclerView.ViewHolder {
         private TextView messageText;
+        private ImageView avatarView;
 
         MessageViewHolder(View itemView) {
             super(itemView);
             messageText = (TextView) itemView.findViewById(R.id.message_text);
+            avatarView = (ImageView) itemView.findViewById(R.id.avatar);
         }
 
-        public void setMessageText(String text) {
-            messageText.setText(text);
+        void setMessage(ChatMessage message, int position) {
+
+            boolean showAvatar = true;
+            if (position - 1 >= 0) {
+                showAvatar = message.isFrom() != messages.get(position - 1).isFrom();
+            }
+            avatarView.setVisibility(showAvatar ? View.VISIBLE : View.INVISIBLE);
+            messageText.setText(message.getMessageContent());
         }
 
     }

@@ -24,8 +24,8 @@ public class ChatItemAnimator extends BaseItemAnimator {
         holder.itemView.setRotation(-30);
         holder.itemView.setScaleX(0.3F);
         holder.itemView.setScaleY(0.3F);
-        holder.itemView.setTranslationX(dp(100));
-        holder.itemView.setTranslationY(-dp(60));
+        holder.itemView.setTranslationX(dp(50));
+        holder.itemView.setTranslationY(-dp(50));
         holder.itemView.findViewById(R.id.message_text).setAlpha(0.5F);
         return true;
     }
@@ -55,6 +55,8 @@ public class ChatItemAnimator extends BaseItemAnimator {
                         //背景变化
                         ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) messageBgView.getLayoutParams();
                         if (lp != null) {
+                            fraction = Math.min(fraction, 1F);
+                            fraction = Math.max(fraction, 0.4F);
                             lp.rightMargin = (int) ((1 - fraction) * messageTextView.getMeasuredWidth());
                             messageBgView.setLayoutParams(lp);
                         }

@@ -2,14 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
     android:padding="8dp">
 
     <ImageView
         android:id="@+id/avatar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="#666666" />
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/avatar_1" />
 
 
     <View
@@ -20,21 +19,21 @@
         android:layout_alignLeft="@+id/message_text"
         android:layout_alignRight="@+id/message_text"
         android:layout_alignTop="@+id/message_text"
-        android:background="#eeeeFF" />
+        android:background="@drawable/bg_message_text" />
 
     <TextView
         android:id="@+id/message_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="8dp"
         android:layout_toRightOf="@+id/avatar"
         android:gravity="center"
-        android:minHeight="50dp"
-        android:padding="8dp"
+        android:minHeight="40dp"
+        android:padding="10dp"
         android:text="我是一个小蚊子"
-        android:textColor="#333333"
-        android:textSize="20dp" />
+        android:textColor="#FFFFFF"
+        android:textSize="14dp" />
 
 </RelativeLayout>
 

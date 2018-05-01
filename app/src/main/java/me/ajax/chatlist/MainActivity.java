@@ -6,8 +6,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     MessageAdapter messageAdapter;
+
+    ArrayList<ChatMessage> messages = new ArrayList<>();
+    int messageIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +33,17 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(chatItemAnimator);
 
 
+        messages.add(new ChatMessage(true, "你好"));
+        messages.add(new ChatMessage(true, "我是谁？"));
+        messages.add(new ChatMessage(true, "我这是在哪儿？"));
+        messages.add(new ChatMessage(true, "啥时候吃饭？"));
+
+
         findViewById(R.id.add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                messageAdapter.add("你好你好你好你好你好你好你好你好你好你好你好");
+                if (messageIndex == messages.size()) return;
+                messageAdapter.add(messages.get(messageIndex++));
             }
         });
     }
